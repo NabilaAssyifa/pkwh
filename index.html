@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penghitungan Produksi</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    .result {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Penghitungan Produksi</h2>
+    <label for="biaya">Langkah 1: Masukkan Biaya Total Produksi (Rp)</label>
+    <input type="number" id="biaya">
+    <label for="unit">Langkah 2: Masukkan Jumlah Unit Produksi</label>
+    <input type="number" id="unit">
+    <label for="harga">Langkah 3: Masukkan Harga Jual per Unit (Rp)</label>
+    <input type="number" id="harga">
+    <button onclick="hitung()">Langkah 4: Hitung</button>
+
+    <div class="result">
+        <h3>Hasil:</h3>
+        <p id="hpp">Langkah 5: Harga Pokok Produksi: </p>
+        <p id="bepProduksi">Langkah 6: BEP Produksi: </p>
+        <p id="bepHarga">Langkah 7: BEP Harga: </p>
+    </div>
+</div>
+
+<script>
+    function hitung() {
+        var biaya = parseFloat(document.getElementById('biaya').value);
+        var unit = parseFloat(document.getElementById('unit').value);
+        var harga = parseFloat(document.getElementById('harga').value);
+
+        // Langkah 5: Menghitung Harga Pokok Produksi (HPP)
+        var hpp = biaya / unit;
+        document.getElementById('hpp').innerHTML = "Langkah 5: Harga Pokok Produksi: " + hpp.toFixed(2) + " Rp. Harga Pokok Produksi adalah biaya total produksi per unit.";
+
+        // Langkah 6: Menghitung BEP Produksi (Break Even Point Produksi)
+        var bepProduksi = biaya / (harga - hpp);
+        document.getElementById('bepProduksi').innerHTML = "Langkah 6: BEP Produksi: " + bepProduksi.toFixed(2) + " unit. BEP Produksi adalah jumlah unit yang harus dijual agar perusahaan tidak mengalami untung maupun rugi.";
+
+        // Langkah 7: Menghitung BEP Harga (Break Even Point Harga)
+        var bepHarga = hpp * bepProduksi;
+        document.getElementById('bepHarga').innerHTML = "Langkah 7: BEP Harga: " + bepHarga.toFixed(2) + " Rp. BEP Harga adalah jumlah pendapatan yang harus diperoleh agar perusahaan tidak mengalami untung maupun rugi.";
+    }
+</script>
+
+</body>
+</html>
